@@ -58,6 +58,39 @@ func TestCountTimesHoveringAt0(t *testing.T) {
 				},
 				want: 6,
 			},
+			{
+				name: "hovering 0 3 times and keeps same current position",
+				args: args{
+					startsAt: 50,
+					moves:    []string{"L300"},
+				},
+				want: 3,
+			},
+			{
+				name: "hovering 0 8 times and keeps same current position",
+				args: args{
+					startsAt: 50,
+					moves:    []string{"L300", "R500"},
+				},
+				want: 8,
+			},
+
+			{
+				name: "hovering 0 8 times and keeps same current position",
+				args: args{
+					startsAt: 50,
+					moves:    []string{"R50", "R30", "R150", "L279", "R256", "L100"},
+				},
+				want: 7,
+			},
+			{
+				name: "hovering 0 10 times and keeps same current position",
+				args: args{
+					startsAt: 50,
+					moves:    []string{"R1000"},
+				},
+				want: 10,
+			},
 		}
 
 		for _, tt := range tests {
