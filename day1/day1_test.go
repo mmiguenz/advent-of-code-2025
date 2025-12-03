@@ -91,6 +91,14 @@ func TestCountTimesHoveringAt0(t *testing.T) {
 				},
 				want: 10,
 			},
+			{
+				name: "starting at 0 hovering 0 times when moving left",
+				args: args{
+					startsAt: 0,
+					moves:    []string{"L5"},
+				},
+				want: 0,
+			},
 		}
 
 		for _, tt := range tests {
