@@ -1,7 +1,6 @@
 package day2
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 )
@@ -64,7 +63,6 @@ func FindInvalidIds(from int64, to int64) []int64 {
 		}
 
 	}
-	fmt.Println("Found elements: ", foundElems)
 	return foundElems
 }
 
@@ -103,7 +101,11 @@ func IsASequenceRepeatedAnyTimes(currentNumber string) bool {
 		}
 	}
 
-	return visited[pattern] > 1
+	isCompleteParse := p0 == len(currentNumber)
+	isRepeated := visited[pattern] > 1
+	isValidComposition := visited[pattern]*int64(len(pattern)) == int64(len(currentNumber))
+
+	return isCompleteParse && isRepeated && isValidComposition
 }
 
 func movePositionToNextPattern(p0, p1 int, currentNumber string, lenCurrentPattern int) (int, int) {
@@ -117,4 +119,26 @@ func movePositionToNextPattern(p0, p1 int, currentNumber string, lenCurrentPatte
 
 func restartPatternPosition(p0 int) (int, int) {
 	return 0, p0
+}
+
+func IsASequenceRepeatedAnyTimesGenerated(currentNumber string) bool {
+	n := len(currentNumber)
+	if n < 2 {
+		return false
+	}
+
+	// Iterate through all possible pattern lengths, from 1 up to half the string's length.
+	// A pattern's length must be a divisor of the total string's length.
+	for patternLen := 1; patternLen <= n/2; patternLen++ {
+		if n%patternLen == 0 {
+			pattern := currentNumber[:patternLen]
+			numRepeats := n / patternLen
+			// Build the expected string by repeating the pattern and check for a match.
+			if strings.Repeat(pattern, numRepeats) == currentNumber {
+				return true
+			}
+		}
+	}
+	// If no repeating pattern is found after checking all possible lengths, return false.
+	return false
 }
