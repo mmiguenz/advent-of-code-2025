@@ -2,7 +2,6 @@ package day2
 
 import (
 	"fmt"
-	_ "fmt"
 	"strconv"
 	"strings"
 )
@@ -55,11 +54,17 @@ func FindInvalidIds(from int64, to int64) []int64 {
 	for i := from; i <= to; i++ {
 		currentNumber := strconv.FormatInt(i, 10)
 
-		if IsASequenceRepeatedAnyTimes(currentNumber) {
+		if // The `IsASequenceRepeatedAnyTimes` function is checking if a given string contains a repeated
+		// sequence of characters. It iterates through the input string and tries to find patterns that
+		// repeat multiple times. It keeps track of visited patterns and their occurrences to determine if
+		// a sequence is repeated more than once in the string. The function returns true if it finds a
+		// repeated sequence, otherwise false.
+		IsASequenceRepeatedAnyTimes(currentNumber) {
 			foundElems = append(foundElems, i)
 		}
 
 	}
+	fmt.Println("Found elements: ", foundElems)
 	return foundElems
 }
 
@@ -97,10 +102,6 @@ func IsASequenceRepeatedAnyTimes(currentNumber string) bool {
 			p0, p1 = movePositionToNextPattern(p0, p1, currentNumber, lenCurrentPattern)
 		}
 	}
-	fmt.Println("pattern: ", pattern)
-	fmt.Println("pattern Visits: ", visited[pattern])
-	fmt.Println("P0: ", p0)
-	fmt.Println("P1: ", p1)
 
 	return visited[pattern] > 1
 }

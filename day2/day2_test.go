@@ -45,6 +45,62 @@ func TestFindInvalidIds(t *testing.T) {
 			to:   1012,
 			want: []int64{999, 1010},
 		},
+		{
+			name: "sample 6",
+			from: 222220,
+			to:   222224,
+			want: []int64{222222},
+		},
+		{
+			name: "sample 7",
+			from: 1698522,
+			to:   1698528,
+			want: []int64{},
+		},
+		{
+			name: "sample 8",
+			from: 446443,
+			to:   446449,
+			want: []int64{446446},
+		},
+		{
+			name: "sample 9",
+			from: 38593856,
+			to:   38593862,
+			want: []int64{38593859},
+		},
+		{
+			name: "sample 10",
+			from: 565653,
+			to:   565659,
+			want: []int64{565656},
+		},
+		{
+			name: "sample 11",
+			from: 824824821,
+			to:   824824827,
+			want: []int64{824824824},
+		},
+		{
+			name: "sample 12",
+			from: 2121212118,
+			to:   2121212124,
+			want: []int64{2121212121},
+		},
+		{
+			// From TestAddingUpInvalidIds sample 4
+			name: "sample 13",
+			from: 998,
+			to:   101,
+			want: []int64{},
+		},
+		{
+			// From TestAddingUpInvalidIds sample 4
+			name: "sample 14",
+			from: 1188511880,
+			to:   118851189,
+			want: []int64{},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -75,6 +131,11 @@ func TestAddingUpInvalidIds(t *testing.T) {
 			name:      "sample 3",
 			idsRanges: "998-1012",
 			want:      1010 + 999,
+		},
+		{
+			name:      "sample 4",
+			idsRanges: "11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124",
+			want:      4174379265,
 		},
 	}
 	for _, tt := range tests {
