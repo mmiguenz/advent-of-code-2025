@@ -4,12 +4,15 @@ import (
 	"advent-of-code-2025/common"
 	"advent-of-code-2025/day1"
 	"advent-of-code-2025/day2"
+	"advent-of-code-2025/day3"
 	"fmt"
 )
 
 func main() {
 	// runDay1()
-	runDay2()
+	// runDay2()
+
+	runDay3()
 }
 
 func runDay1() {
@@ -26,6 +29,14 @@ func runDay2() {
 	input := common.ParseCSV("day2/input.csv")
 
 	result := day2.AddingUpInvalidIds(input[0])
+
+	fmt.Println("Result: ", result)
+}
+
+func runDay3() {
+	input := common.ParseCSV("day3/input.csv")
+
+	result := day3.SumAllMaxJoltage(input)
 
 	fmt.Println("Result: ", result)
 }
