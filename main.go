@@ -5,14 +5,16 @@ import (
 	"advent-of-code-2025/day1"
 	"advent-of-code-2025/day2"
 	"advent-of-code-2025/day3"
+	"advent-of-code-2025/day4"
 	"fmt"
 )
 
 func main() {
 	// runDay1()
 	// runDay2()
+	//runDay3()
 
-	runDay3()
+	runDay4()
 }
 
 func runDay1() {
@@ -37,6 +39,14 @@ func runDay3() {
 	input := common.ParseCSV("day3/input.csv")
 
 	result := day3.SumAllMaxJoltage(input, 12)
+
+	fmt.Println("Result: ", result)
+}
+
+func runDay4() {
+	input := common.ParseCSV("day4/input.csv")
+
+	result := day4.CountAccessibleRolls(input)
 
 	fmt.Println("Result: ", result)
 }
