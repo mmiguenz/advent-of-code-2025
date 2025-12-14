@@ -23,7 +23,7 @@ func CountAccessibleRolls(rollsGrid []string) int64 {
 	return accesibleRolls
 }
 
-func cacalculateAdjacentPositions(currentPosition position, gridLength, gridDeepth int) []position {
+func calculateAdjacentPositions(currentPosition position, gridLength, gridDeepth int) []position {
 	positions := []position{}
 
 	for i := currentPosition.row - 1; i <= currentPosition.row+1; i++ {
@@ -42,7 +42,7 @@ func cacalculateAdjacentPositions(currentPosition position, gridLength, gridDeep
 }
 
 func isAccesible(rollsGrid []string, position position, gridLength int, gridDeepth int) bool {
-	adjacentPositions := cacalculateAdjacentPositions(position, gridLength, gridDeepth)
+	adjacentPositions := calculateAdjacentPositions(position, gridLength, gridDeepth)
 	countRolls := 0
 	for _, ap := range adjacentPositions {
 		if string(rollsGrid[ap.row][ap.column]) == "@" {
