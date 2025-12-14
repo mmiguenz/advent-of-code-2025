@@ -45,7 +45,7 @@ func TestMaxJoltage(t *testing.T) {
 	}
 }
 
-func TestMaxJoltageV2(t *testing.T) {
+func TestMaxJoltageBruteForce(t *testing.T) {
 	tests := []struct {
 		name string // description of this test case
 		// Named input parameters for target function.
@@ -81,10 +81,124 @@ func TestMaxJoltageV2(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := day3.MaxJoltageV2(tt.bank, tt.amountOfBatteries)
+			got := day3.MaxJoltageBruteForce(tt.bank, tt.amountOfBatteries)
 
 			if got != tt.want {
-				t.Errorf("MaxJoltageV2() = %v, want %v", got, tt.want)
+				t.Errorf("MaxJoltageBruteForce() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestMaxJoltageGA(t *testing.T) {
+	tests := []struct {
+		name string // description of this test case
+		// Named input parameters for target function.
+		bank              string
+		amountOfBatteries int
+		want              int64
+	}{
+		{
+			"sample 1",
+			"987654321111111",
+			12,
+			987654321111,
+		},
+		{
+			"sample 2",
+			"811111111111119",
+			12,
+			811111111119,
+		},
+		{
+			"sample 3",
+			"234234234234278",
+			12,
+			434234234278,
+		},
+		{
+			"sample 4",
+			"818181911112111",
+			12,
+			888911112111,
+		},
+		{
+			name:              "sample 5",
+			bank:              "565656565656",
+			amountOfBatteries: 6,
+			want:              666666,
+		},
+		{
+			name:              "sample 6",
+			bank:              "121212121212",
+			amountOfBatteries: 6,
+			want:              222222,
+		},
+		{
+			name:              "sample 7",
+			bank:              "9876543210",
+			amountOfBatteries: 5,
+			want:              98765,
+		},
+		{
+			name:              "sample 8",
+			bank:              "111122223333",
+			amountOfBatteries: 6,
+			want:              223333,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := day3.MaxJoltageGA(tt.bank, tt.amountOfBatteries)
+
+			if got != tt.want {
+				t.Errorf("MaxJoltageGA() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestMaxJoltageStacking(t *testing.T) {
+	tests := []struct {
+		name string // description of this test case
+		// Named input parameters for target function.
+		bank              string
+		amountOfBatteries int
+		want              int64
+	}{
+		{
+			"sample 1",
+			"987654321111111",
+			12,
+			987654321111,
+		},
+		{
+			"sample 2",
+			"811111111111119",
+			12,
+			811111111119,
+		},
+		{
+			"sample 3",
+			"234234234234278",
+			12,
+			434234234278,
+		},
+		{
+			"sample 4",
+			"818181911112111",
+			12,
+			888911112111,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := day3.MaxJoltageStacking(tt.bank, tt.amountOfBatteries)
+
+			if got != tt.want {
+				t.Errorf("MaxJoltageStacking() = %v, want %v", got, tt.want)
 			}
 		})
 	}

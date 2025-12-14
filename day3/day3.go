@@ -8,7 +8,7 @@ import (
 func SumAllMaxJoltage(banks []string, amountOfBateries int) int64 {
 	totalSum := int64(0)
 	for _, bank := range banks {
-		totalSum += MaxJoltageV2(bank, amountOfBateries)
+		totalSum += MaxJoltageStacking(bank, amountOfBateries)
 	}
 	return totalSum
 }
@@ -28,7 +28,7 @@ func MaxJoltage(bank string) int64 {
 	return maxNumber
 }
 
-func MaxJoltageV2(bank string, amountOfBatteries int) int64 {
+func MaxJoltageBruteForce(bank string, amountOfBatteries int) int64 {
 	maxNumber := int64(0)
 
 	allPossibleJoltages := combinations(strings.Split(bank, ""), amountOfBatteries)
@@ -42,6 +42,38 @@ func MaxJoltageV2(bank string, amountOfBatteries int) int64 {
 	}
 
 	return maxNumber
+}
+
+func MaxJoltageGA(bank string, amountOfBatteries int) int64 {
+	gaConfig := GAConfig{
+		PopulationSize: 20 * amountOfBatteries,
+		Generations:    200,
+		MutationRate:   0.1,
+		CrossoverRate:  0.8,
+	}
+
+	bestIndividual := SolveGA(bank, amountOfBatteries, gaConfig)
+
+	return bestIndividual.Fitness
+}
+
+func MaxJoltageStacking(digits string, k int) int64 {
+	stack := make([]byte, 0, k)
+	drop := len(digits) - k
+
+	for i := 0; i < len(digits); i++ {
+		d := digits[i]
+
+		for drop > 0 && len(stack) > 0 && stack[len(stack)-1] < d {
+			stack = stack[:len(stack)-1]
+			drop--
+		}
+
+		stack = append(stack, d)
+	}
+
+	result, _ := strconv.ParseInt(string(stack[:k]), 10, 64)
+	return result
 }
 
 func buildNumber(digit ...string) int64 {
