@@ -51,46 +51,46 @@ func buildNumber(digit ...string) int64 {
 }
 
 func combinations(elements []string, k int) [][]string {
-    n := len(elements)
-    if k < 0 || k > n {
-        return [][]string{}
-    }
+	n := len(elements)
+	if k < 0 || k > n {
+		return [][]string{}
+	}
 
-    // indexes will store the current combination of positions
-    idx := make([]int, k)
-    for i := 0; i < k; i++ {
-        idx[i] = i
-    }
+	// indexes will store the current combination of positions
+	idx := make([]int, k)
+	for i := 0; i < k; i++ {
+		idx[i] = i
+	}
 
-    var result [][]string
+	var result [][]string
 
-    for {
-        // Build combination from indexes
-        combo := make([]string, k)
-        for i, pos := range idx {
-            combo[i] = elements[pos]
-        }
-        result = append(result, combo)
+	for {
+		// Build combination from indexes
+		combo := make([]string, k)
+		for i, pos := range idx {
+			combo[i] = elements[pos]
+		}
+		result = append(result, combo)
 
-        // Find the rightmost index to increment
-        i := k - 1
-        for i >= 0 && idx[i] == i+n-k {
-            i--
-        }
+		// Find the rightmost index to increment
+		i := k - 1
+		for i >= 0 && idx[i] == i+n-k {
+			i--
+		}
 
-        // If no such index exists, we are done
-        if i < 0 {
-            break
-        }
+		// If no such index exists, we are done
+		if i < 0 {
+			break
+		}
 
-        // Increment this index
-        idx[i]++
+		// Increment this index
+		idx[i]++
 
-        // Reset all following indexes
-        for j := i + 1; j < k; j++ {
-            idx[j] = idx[j-1] + 1
-        }
-    }
+		// Reset all following indexes
+		for j := i + 1; j < k; j++ {
+			idx[j] = idx[j-1] + 1
+		}
+	}
 
-    return result
+	return result
 }

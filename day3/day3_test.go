@@ -49,9 +49,9 @@ func TestMaxJoltageV2(t *testing.T) {
 	tests := []struct {
 		name string // description of this test case
 		// Named input parameters for target function.
-		bank string
+		bank              string
 		amountOfBatteries int
-		want int64
+		want              int64
 	}{
 		{
 			"sample 1",
@@ -92,10 +92,10 @@ func TestMaxJoltageV2(t *testing.T) {
 
 func TestSumAllMaxJoltage(t *testing.T) {
 	tests := []struct {
-		name string 		
-		banks []string
+		name             string
+		banks            []string
 		amountOfBateries int
-		want  int64
+		want             int64
 	}{
 		{
 			"The total output joltage is the sum of the maximum joltage from each bank, so in this example, the total output joltage is 98 + 89 + 78 + 92 = 357",
