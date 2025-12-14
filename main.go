@@ -46,7 +46,9 @@ func runDay3() {
 func runDay4() {
 	input := common.ParseCSV("day4/input.csv")
 
-	result := day4.CountAccessibleRolls(input)
+	//result := day4.CountAccessibleRolls(input)
+
+	result := day4.MaxRollsCanBeRemoved(input)
 
 	fmt.Println("Result: ", result)
 }

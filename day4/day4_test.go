@@ -14,7 +14,7 @@ func TestCountAccessibleRolls(t *testing.T) {
 	}{
 		{
 			"sample 1",
-			[]string {
+			[]string{
 				"..@@.@@@@.",
 				"@@@.@.@.@@",
 				"@@@@@.@.@@",
@@ -35,6 +35,41 @@ func TestCountAccessibleRolls(t *testing.T) {
 			// TODO: update the condition below to compare got with tt.want.
 			if got != tt.want {
 				t.Errorf("CountAccessibleRolls() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestMaxRollsCanBeRemoved(t *testing.T) {
+	tests := []struct {
+		name string // description of this test case
+		// Named input parameters for target function.
+		rollsGrid []string
+		want      int64
+	}{
+		{
+			"sample 1",
+			[]string{
+				"..@@.@@@@.",
+				"@@@.@.@.@@",
+				"@@@@@.@.@@",
+				"@.@@@@..@.",
+				"@@.@@@@.@@",
+				".@@@@@@@.@",
+				".@.@.@.@@@",
+				"@.@@@.@@@@",
+				".@@@@@@@@.",
+				"@.@.@@@.@.",
+			},
+			43,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := day4.MaxRollsCanBeRemoved(tt.rollsGrid)
+			// TODO: update the condition below to compare got with tt.want.
+			if got != tt.want {
+				t.Errorf("MaxRollsCanBeRemoved() = %v, want %v", got, tt.want)
 			}
 		})
 	}

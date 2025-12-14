@@ -23,6 +23,30 @@ func CountAccessibleRolls(rollsGrid []string) int64 {
 	return accesibleRolls
 }
 
+func MaxRollsCanBeRemoved(rollsGrid []string) int64 {
+	accesibleRollsCount := int64(0)
+	gridDeepth := len(rollsGrid[0])
+	gridLength := len(rollsGrid)
+
+	for i := 0; i < gridLength; i++ {
+		for j := 0; j < gridDeepth; j++ {
+			currentPosition := position{i, j}
+
+			if string(rollsGrid[currentPosition.row][currentPosition.column]) == "@" && isAccesible(rollsGrid, currentPosition, gridDeepth, gridLength) {
+				accesibleRollsCount++
+				currentElem := rollsGrid[currentPosition.row]
+				rollsGrid[currentPosition.row] = currentElem[:currentPosition.column] + "X" + currentElem[currentPosition.column+1:]
+			}
+		}
+	}
+
+	if accesibleRollsCount == 0 {
+		return 0
+	}
+
+	return accesibleRollsCount + MaxRollsCanBeRemoved(rollsGrid)
+}
+
 func calculateAdjacentPositions(currentPosition position, gridLength, gridDeepth int) []position {
 	positions := []position{}
 
