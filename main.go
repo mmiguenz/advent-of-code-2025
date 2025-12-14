@@ -36,7 +36,7 @@ func runDay2() {
 func runDay3() {
 	input := common.ParseCSV("day3/input.csv")
 
-	result := day3.SumAllMaxJoltage(input)
+	result := day3.SumAllMaxJoltage(input, 12)
 
 	fmt.Println("Result: ", result)
 }
