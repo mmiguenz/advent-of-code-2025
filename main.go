@@ -6,15 +6,18 @@ import (
 	"advent-of-code-2025/day2"
 	"advent-of-code-2025/day3"
 	"advent-of-code-2025/day4"
+	"advent-of-code-2025/day5"
 	"fmt"
+	"strconv"
 )
 
 func main() {
 	// runDay1()
 	// runDay2()
 	//runDay3()
+	//runDay4()
 
-	runDay4()
+	runDay5()
 }
 
 func runDay1() {
@@ -49,6 +52,31 @@ func runDay4() {
 	//result := day4.CountAccessibleRolls(input)
 
 	result := day4.MaxRollsCanBeRemoved(input)
+
+	fmt.Println("Result: ", result)
+}
+
+func runDay5() {
+	input := common.ParseCSV("day5/input.csv")
+	ranges := []string{}
+	ingredients := []int64{}
+	endOfRanges := false
+	for _, line := range input {
+		if line == "" {
+			endOfRanges = true
+			continue
+		}
+
+		if endOfRanges {
+			ingredient, _ := strconv.ParseInt(line, 10, 64)
+			ingredients = append(ingredients, ingredient)
+		} else {
+			ranges = append(ranges, line)
+		}
+
+	}
+
+	result := day5.CountFreshIngredients(ranges, ingredients)
 
 	fmt.Println("Result: ", result)
 }
