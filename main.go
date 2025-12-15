@@ -7,6 +7,7 @@ import (
 	"advent-of-code-2025/day3"
 	"advent-of-code-2025/day4"
 	"advent-of-code-2025/day5"
+	"advent-of-code-2025/day6"
 	"fmt"
 	"strconv"
 )
@@ -16,8 +17,9 @@ func main() {
 	// runDay2()
 	//runDay3()
 	//runDay4()
+	//runDay5()
 
-	runDay5()
+	runDay6()
 }
 
 func runDay1() {
@@ -78,6 +80,14 @@ func runDay5() {
 
 	//result := day5.CountFreshIngredients(ranges, ingredients)
 	result := day5.CountFreshIngredientsAvailable(ranges)
+
+	fmt.Println("Result: ", result)
+}
+
+func runDay6() {
+	input := common.ParseCSV("day6/input.csv")
+
+	result := day6.GrandTotal(input)
 
 	fmt.Println("Result: ", result)
 }
