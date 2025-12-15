@@ -76,7 +76,8 @@ func runDay5() {
 
 	}
 
-	result := day5.CountFreshIngredients(ranges, ingredients)
+	//result := day5.CountFreshIngredients(ranges, ingredients)
+	result := day5.CountFreshIngredientsAvailable(ranges)
 
 	fmt.Println("Result: ", result)
 }

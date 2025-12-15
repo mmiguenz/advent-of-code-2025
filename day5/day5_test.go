@@ -35,3 +35,30 @@ func TestCountFreshIngredients(t *testing.T) {
 		})
 	}
 }
+
+func TestCountFreshIngredientsAvailable(t *testing.T) {
+	tests := []struct {
+		name string // description of this test case
+		// Named input parameters for target function.
+		freshRanges []string
+		want        int64
+	}{
+		{
+			"Ranges generate 14 total unique ingredients",
+			[]string{"3-5",
+				"10-14",
+				"16-20",
+				"12-18"},
+			14,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := day5.CountFreshIngredientsAvailable(tt.freshRanges)
+			// TODO: update the condition below to compare got with tt.want.
+			if got != tt.want {
+				t.Errorf("CountFreshIngredientsAvailable() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
