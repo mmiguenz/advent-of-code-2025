@@ -86,8 +86,7 @@ func runDay5() {
 
 func runDay6() {
 	input := common.ParseCSV("day6/input.csv")
-
-	result := day6.GrandTotal(input)
+	result := day6.GrandTotalV2(input)
 
 	fmt.Println("Result: ", result)
 }

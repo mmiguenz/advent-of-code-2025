@@ -32,6 +32,44 @@ func GrandTotal(homeWorkLines []string) int64 {
 	return result
 }
 
+func GrandTotalV2(homeWorkLines []string) int64 {
+	totalRows := len(homeWorkLines)
+	totalColmumns := len(homeWorkLines[0])
+	currentColumn := totalColmumns - 1
+	grandTotal := int64(0)
+	columns := []string{}
+
+	for currentColumn >= 0 {
+		column := ""
+		var operator func(acc, x int64) int64
+		var initValue int64
+
+		for row := 0; row < totalRows; row++ {
+			value := string(homeWorkLines[row][currentColumn])
+			if value != " " {
+				if value == "*" || value == "+" {
+					operator, initValue = getOperator(value)
+				} else {
+					column += value
+				}
+			}
+		}
+
+		columns = append(columns, column)
+		if operator != nil {
+			grandTotal += foldl(columns, initValue, operator)
+			columns = []string{}
+			currentColumn -= 2
+		} else {
+			currentColumn--
+		}
+
+	}
+
+	return grandTotal
+
+}
+
 func getOperator(op string) (func(acc, x int64) int64, int64) {
 	switch op {
 	case "*":
